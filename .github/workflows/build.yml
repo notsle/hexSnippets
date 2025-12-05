@@ -19,6 +19,9 @@ jobs:
         with:
           node-version: "22"
 
+      - name: npm install
+        run: npm ci
+
       - name: Install vsce
         run: npm install -g @vscode/vsce
 
@@ -41,4 +44,4 @@ jobs:
           tag_name: latest
           files: ${{ github.event.repository.name }}.vsix
         env:
-          GITHUB_TOKEN: ${{ secrets.BRV_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.NOTSLEGIT_TOKEN }}
