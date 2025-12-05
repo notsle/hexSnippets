@@ -20,7 +20,7 @@ jobs:
           node-version: "22"
 
       - name: npm install
-        run: npm ci
+        run: npm i
 
       - name: Install vsce
         run: npm install -g @vscode/vsce
