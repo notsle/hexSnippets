@@ -1,0 +1,123 @@
+{
+  "name": "hexsnippets",
+  "displayName": "HexSnippets",
+  "description": "Load and share code snippets from a git repo",
+  "version": "0.1.0",
+  "publisher": "notsle",
+  "repository": "https://github.com/notsle/hexsnippets",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "icon": "icon/hexsnippets.png",
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "hexSnippets.syncNow",
+        "title": "HexSnippets: Sync Now"
+      },
+      {
+        "command": "hexSnippets.openSnippetsFolder",
+        "title": "HexSnippets: Open Snippets Folder"
+      }
+    ],
+    "themes": [],
+    "configuration": {
+      "type": "object",
+      "title": "HexSnippets",
+      "properties": {
+        "hexSnippets.repositories": {
+          "type": "array",
+          "description": "List of local git repos containing shared snippets.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Short label for this repo (for status bar and pick lists)."
+              },
+              "localRepoPath": {
+                "type": "string",
+                "description": "Path to a local git repo. Can be absolute or relative to the first workspace folder."
+              },
+              "branch": {
+                "type": "string",
+                "default": "main",
+                "description": "Git branch to pull from."
+              },
+              "snippetsPath": {
+                "type": "string",
+                "default": "snippets",
+                "description": "Path inside the repo where snippet files live."
+              },
+              "includeJsonFiles": {
+                "type": "boolean",
+                "default": true,
+                "description": "Also treat *.json files as snippet collections."
+              },
+              "enableGitPull": {
+                "type": "boolean",
+                "default": true,
+                "description": "If true, run 'git pull' in this repo during sync."
+              }
+            },
+            "required": [
+              "localRepoPath"
+            ]
+          }
+        },
+        "hexSnippets.localRepoPath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to a local git repo (fallback if repositories[] is not set)."
+        },
+        "hexSnippets.branch": {
+          "type": "string",
+          "default": "main",
+          "description": "Git branch to pull from (fallback for single-repo mode)."
+        },
+        "hexSnippets.snippetsPath": {
+          "type": "string",
+          "default": "snippets",
+          "description": "Path inside the repo where snippet files live (fallback for single-repo mode)."
+        },
+        "hexSnippets.includeJsonFiles": {
+          "type": "boolean",
+          "default": true,
+          "description": "Also treat *.json files as snippet collections (fallback)."
+        },
+        "hexSnippets.enableGitPull": {
+          "type": "boolean",
+          "default": true,
+          "description": "If true, run 'git pull' in the repo during sync (fallback)."
+        },
+        "hexSnippets.autoSyncIntervalMinutes": {
+          "type": "number",
+          "default": 15,
+          "description": "How often (in minutes) to auto-sync all repos. 0 disables auto-sync."
+        },
+        "hexSnippets.debug": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable verbose logging to the Extension Host output."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "vscode:prepublish": "npm run compile"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.6.0"
+  }
+}

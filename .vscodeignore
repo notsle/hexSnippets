@@ -1,0 +1,10 @@
+out/test/**
+src/**
+.vscode/**
+.gitignore
+tsconfig.json
+README.md
+.vscode-test/**
+**/*.map
+icon/*.af
+icon/*.svg

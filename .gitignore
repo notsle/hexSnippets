@@ -1,0 +1,34 @@
+# Node / dependency stuff
+node_modules/
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Build output
+out/
+dist/
+*.vsix
+
+# TypeScript
+*.tsbuildinfo
+
+# VS Code settings & test workspace
+.vscode/
+.vscode-test/
+
+# OS-specific junk
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Env / secrets (if you ever add them)
+.env
+.env.local
+.env.*.local
+

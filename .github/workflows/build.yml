@@ -1,0 +1,44 @@
+name: Release VS Code Extension
+
+on:
+  push:
+    branches: ["main", "develop"]
+  release:
+    types: [published]
+
+jobs:
+  build-and-upload-vsix:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install vsce
+        run: npm install -g @vscode/vsce
+
+      - name: Verify vsce
+        run: |
+          echo "Prefix: $(npm config get prefix)"
+          ls -l $(npm config get prefix)/bin
+          which vsce
+          vsce --version
+      # - name: Build extension
+      #   run: npm run build --if-present
+      - name: Package VS Code extension
+        run: |
+          vsce package -o ${{ github.event.repository.name }}.vsix
+        # or: vsce package -o "${{ github.event.repository.name }}.vsix"
+
+      - name: Upload .vsix to Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          files: ${{ github.event.repository.name }}.vsix
+        env:
+          GITHUB_TOKEN: ${{ secrets.BRV_TOKEN }}
