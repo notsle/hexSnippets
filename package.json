@@ -2,7 +2,7 @@
   "name": "hexsnippets",
   "displayName": "HexSnippets",
   "description": "Load and share code snippets from a git repo",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "publisher": "notsle",
   "repository": "https://github.com/notsle/hexsnippets",
   "engines": {
@@ -10,7 +10,16 @@
   },
   "icon": "icon/hexsnippets.png",
   "categories": [
-    "Other"
+    "Other",
+    "Snippets",
+  ],
+  "keywords": [
+    "snippets",
+    "snippet",
+    "sharing",
+    "share",
+    "git",
+    "productivity"
   ],
   "activationEvents": [
     "onStartupFinished"
